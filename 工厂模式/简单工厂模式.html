@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class User {
+            constructor(op) {
+                this.name = op.name
+                this.age = op.age
+            }
+            // 静态方法
+            static getInstance(role) {
+                switch (role) {
+                    case 'superAdmin':
+                        return new User({ name: 'ZS', age: 18 })
+                        break;
+                    case 'admin':
+                        return new User({ name: '管理员' })
+                        break
+                    case 'user':
+                        return new User({ name: 'user', age: 17 })
+                    default:
+                        break;
+                }
+            }
+        }
+
+        let superAdmin = User.getInstance('superAdmin')
+        let admin = User.getInstance('admin')
+        let user = User.getInstance('user')
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class User {
+            constructor(name, viewPage) {
+                if (new.target === User) {
+                    throw new Error('抽象类不能实例化')
+                }
+                this.name = name
+                this.viewPage = viewPage
+            }
+        }
+
+        class UserFactory extends User {
+            constructor(name, viewPage) {
+                super(name, viewPage)
+            }
+            create(role) {
+                switch (role) {
+                    case 'superAdmin':
+                        return new UserFactory({ name: 'ZS', age: 18 })
+                        break;
+                    case 'admin':
+                        return new UserFactory({ name: '管理员' })
+                        break
+                    case 'user':
+                        return new UserFactory({ name: 'user', age: 17 })
+                    default:
+                        break;
+                }
+            }
+        }
+
+        let userFactory = new UserFactory()
+        let superAdmin = userFactory.create('superAdmin')
+        let admin = userFactory.create('admin')
+        let user = userFactory.create('user')
+    </script>
+</body>
+
+</html>

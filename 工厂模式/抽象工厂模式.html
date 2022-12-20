@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 手机的抽象类
+        class Phone {
+
+
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            call() { }
+        }
+
+        // 笔记本的抽象类
+        class Laptop {
+
+
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            // 打游戏
+            game(gameName) {
+
+            }
+        }
+
+        /**
+         * 小米本身作为一个产品簇，拥有手机，笔记本的多个品种，
+         *  1. 先实现产品簇中的某个产品类；
+         *  2. 在通过整个工厂，整合所有的产品
+         */
+        class MiPhone extends Phone {
+            call() {
+                console.log("少林功夫好哎");
+            }
+        }
+
+        class MiLaptop extends Laptop {
+            game(gameName) {
+                console.log(`小米电脑适合${gameName}`);
+            }
+        }
+
+        class Mi {
+            getPhone(name, price) {
+                return new MiPhone(name, price);
+            }
+
+            getLaptop(name, price) {
+                return new MiLaptop(name, price);
+            }
+        }
+
+        const miShop = new Mi();
+        const miPhone = miShop.getLaptop("P40", 3600);
+        console.log(miPhone);
+
+    </script>
+</body>
+
+</html>
