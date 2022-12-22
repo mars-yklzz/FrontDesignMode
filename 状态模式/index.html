@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class CoffeeMaker {
+            constructor() {
+                this.state = 'init'
+                this.leftMilk = '500ml'
+            }
+
+            stateToProcessor = {
+                that: this,
+                american() {
+                    // 尝试在行为函数里拿到咖啡机实例的信息并输出
+                    console.log('咖啡机现在的牛奶存储量是:', this.that.leftMilk)
+                    console.log('我只吐黑咖啡');
+                },
+                latte() {
+
+                },
+                vanillaLatte() {
+
+                },
+                mocha() {
+
+                }
+            }
+            changeState(state) {
+                this.state = state
+                if (!this.stateToProcessor[state]) {
+                    return
+                }
+                this.stateToProcessor[state]()
+            }
+        }
+        const mk = new CoffeeMaker();
+        mk.changeState('american');
+
+    </script>
+</body>
+
+</html>
