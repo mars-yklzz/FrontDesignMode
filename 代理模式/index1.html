@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const superStar = {
+            name: '小鲜肉',
+            playAdvertisement: function (ad) {
+                console.log(ad)
+            }
+        }
+
+        const ProxyAssistant = {
+            name: '经纪人张某',
+            playAdvertisement(reward, ad) {
+                if (reward > 1000000) {
+                    superStar.playAdvertisement(ad)
+                } else {
+                  console.log('不拍')  
+                }
+            }
+        }
+
+        ProxyAssistant.playAdvertisement(1000, 'asdasdasdas')
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const superStar = {
+            name: '小鲜肉',
+            scheduleFlag: false,
+            playAdvertisement: function (ad) {
+                console.log(ad,'11111111')
+            }
+        }
+
+        const ProxyAssistant = {
+            name: '经纪人张某',
+            scheduleTime(ad) {
+                const schedule = new Proxy(superStar, { // 监听scheduleFlag的变化
+                    set(obj, key, val) {
+                     
+                        if (key !== 'scheduleFlag') return
+                        if (obj.scheduleFlag === false && val === true) {
+                            console.log('asdasdasd')
+                            obj.scheduleFlag = true
+                            obj.playAdvertisement(ad)
+                        }
+                    }
+                })
+                setTimeout(() => {
+                    console.log('有空了拍')
+                    schedule.scheduleFlag = true
+                })
+            },
+            playAdvertisement(reward, ad) {
+                if (reward > 100000) {
+                    ProxyAssistant.scheduleTime(ad)
+                } else {
+                    console.log('gun')
+                }
+            }
+        }
+        ProxyAssistant.playAdvertisement(10000000, '啊实打实打算大')
+
+
+    </script>
+</body>
+
+</html>
