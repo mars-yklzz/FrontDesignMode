@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        window.onload = function () {
+            console.log(11111)
+        }
+
+        // 发送买点信息
+        function sendUserOperation() {
+            console.log('222222')
+        }
+
+        // window.onload = function (params) {
+        //     var orginOnload = window.onload
+        //     return function () {
+        //         orginOnload && orginOnload()
+        //         sendUserOperation()
+        //     }
+        // }()
+
+        // 封装工具方法
+
+        function originDecorateFn(originObj, originKey, fn) {
+            originObj[originKey] = function () {
+                var originFn = originObj[originKey]
+                return function () {
+                    originFn && originFn()
+                    fn()
+                }
+            }()
+        }
+
+        // 添加装饰功能
+        originDecorateFn(window, 'onload', sendUserOperation)
+
+    </script>
+</body>
+
+</html>

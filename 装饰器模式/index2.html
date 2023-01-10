@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #modal {
+            height: 200px;
+            width: 200px;
+            line-height: 200px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id='open'>打开弹框</button>
+    <button id='close'>关闭弹框</button>
+    <script>
+        const Modal = (
+            function () {
+                let modal
+                return function () {
+                    if (!modal) {
+                        modal = document.createElement('div')
+                        modal.innerHTML = '我是一个全局唯一的Modal'
+                        modal.id = 'modal'
+                        modal.style.display = 'none'
+                        document.body.appendChild(modal)
+                    }
+                    return modal
+                }
+            }
+        )()
+
+        //  打开modal
+        function openModal(params) {
+            const modal = Modal()
+            modal.style.display = 'block'
+        }
+
+        // 按钮文字改变
+        function changeButtonText() {
+            const openButton = document.getElementById('open')
+            openButton.innerHTML = '哈哈'
+        }
+        // 置灰按钮
+        function disabledButton(params) {
+            const openButton = document.getElementById('open')
+            openButton.setAttribute('disabled', true)
+        }
+
+        function changeButtonStatus() {
+            changeButtonText()
+            disabledButton()
+        }
+
+        document.getElementById('open').addEventListener('click', function () {
+            openModal()
+            changeButtonStatus()
+        })
+
+        document.getElementById('close').addEventListener('click', function () {
+            const modal = Modal()
+            modal.style.display = 'none'
+        })
+
+
+    </script>
+</body>
+
+</html>
